@@ -1,0 +1,164 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">TRANSACTION APPROVAL PENDING</h4>
+                <div class="col-md-12" id="date">
+                    <input type="date" name="" id="" [(ngModel)]="from" />
+                    <span>--TO--</span>
+                    <input type="date" name="" id="" [(ngModel)]="to" />
+                    <button class="btn btn-outline-success m-3" (click)="getOrdersPending()">
+                        GO
+                    </button>
+                    <button class="btn btn-success p-3" (click)="exportExcel()">
+                        Export Excel
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive" id="excel-table">
+                    <table class="table">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>NAME</th>
+                                <th>PHONE NUMBER</th>
+                                <!-- <th class="text-right"> -->
+                                <!-- DATE -->
+                                <!-- </th> -->
+                                <!-- <th class="text-right"> -->
+                                <!-- TIME -->
+                                <!-- </th> -->
+                                <th>ORDER-ID</th>
+                                <th>PAYEMNT-ID</th>
+                                <th>DATE</th>
+                                <th>TIME</th>
+                                <th>Amount</th>
+                                <th>STATUS</th>
+                                <!-- <th>ACTION</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let value of listOfPayments">
+                                <td>
+                                    {{ value.username }}
+                                </td>
+                                <td>
+                                    {{ value.contact }}
+                                </td>
+                                <td>
+                                    <span class="badge badge-xxl badge-success">
+                                        {{ value.orderId }}</span>
+                                </td>
+                                <td *ngIf="value.status === 'Paid'">
+                                    {{value.paymentId}}
+                                </td>
+                                <td *ngIf="value.status != 'Paid'">
+                                    **********
+                                </td>
+                                <td>
+                                    {{ value.createDate | date : "mediumDate" }}
+                                </td>
+                                <td>
+                                    {{ value.createDate | date : "shortTime" }}
+                                </td>
+                                <td class="text-center">
+                                    {{ value.amount }}
+                                </td>
+                                <td *ngIf="value.status === 'Pending'" style="color: darkorange; font-weight: 700">
+                                    {{ value.status }}
+                                </td>
+                                <td *ngIf="value.status === 'Paid'" style="color: #44c47d; font-weight: 700">
+                                    {{ value.status }}
+                                </td>
+                                <td *ngIf="value.status === 'ReTry'" style="color: red; font-weight: 700">
+                                    {{ value.status }}
+                                </td>
+                                <td *ngIf="
+                    value.status === 'Created' || value.status === 'created'
+                  " style="color: blue; font-weight: 700">
+                                    {{ value.status }}
+                                </td>
+
+                                <!-- <td class="text-right">
+                                    <button type="button" class="btn btn-outline-dark" [attr.data-toggle]="'modal'"
+                                        [attr.data-target]="'#exampleModal' + value.orderId"
+                                        [disabled]="value.status ==='Paid' || value.status ==='Created' || value.status === 'created' || value.status === 'ReTry'">
+                                        APPROVE
+                                    </button>
+                                    <div class="modal fade" id="exampleModal{{ value.orderId }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">
+                                                        TRANSACTION DETAILS
+                                                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                                                    </h5>
+
+                                                    <button type="button" class="btn-close"
+                                                        [attr.data-dismiss]="'modal'" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Please Enter the Correct Transaction-ID Below</p>
+                                                    <input type="text" id="tx_id" placeholder="Enter the Transaction-ID"
+                                                        name="transaction-id" [(ngModel)]="paymentIDValue">
+                                                    <p>
+                                                        If the Transaction-ID is not Matching, contact the
+                                                        Customer!
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        [attr.data-dismiss]="'modal'" (click)="onRetry(value.orderId)">
+                                                        Send Retry
+                                                    </button>
+                                                    <button type="button" class="btn btn-success"
+                                                        [attr.data-dismiss]="'modal'"
+                                                        style="width: fit-content; margin-left: 20px"
+                                                        (click)="changeStatus(value.orderId)">
+                                                        APPROVE
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     Button trigger modal -->
+                                    <!-- <button type="button" class="btn btn-outline-info" data-toggle="modal"  -->
+                                    <!--  data-target="#exampleModalCenter" [disabled]="value.status ==='Paid' || value.status ==='created' || value.status === 'Created'" (click)="changeStatus(value.orderId)"> -->
+                                    <!-- APPROVE/DECLINE -->
+                                    <!-- </button> -->
+
+                                    <!-- Modal -->
+                                    <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" -->
+                                    <!-- aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
+                                    <!-- <div class="modal-dialog modal-dialog-centered" role="document"> -->
+                                    <!-- <div class="modal-content"> -->
+                                    <!-- <div class="modal-header"> -->
+                                    <!--  <h5 class="modal-title" id="exampleModalLongTitle">TRANSACTION DETAILS <i class="fa-solid fa-indian-rupee-sign"></i></h5> -->
+                                    <!-- <button type="button" class="close" data-dismiss="modal" -->
+                                    <!-- aria-label="Close" style="background: transparent; border: none;"> -->
+                                    <!-- <span aria-hidden="true" style="font-size: 25px; font-weight: 700;">&times;</span> -->
+                                    <!-- </button> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="modal-body"> -->
+                                    <!-- <p>Please Enter the Correct Transaction-ID Below</p> -->
+                                    <!-- <input type="text" id="tx_id" placeholder="Enter the Transaction-ID"> -->
+                                    <!-- <p>If the Transaction-ID is not Matching, contact the Customer!</p> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="modal-footer"> -->
+                                    <!-- <button type="button" class="btn btn-outline-danger" -->
+                                    <!-- >Send Retry</button> -->
+                                    <!-- <button type="button" class="btn btn-outline-success">APPROVE</button> -->
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                <!-- </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

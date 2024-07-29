@@ -1,0 +1,212 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6" routerLink="/user">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-single-02 text-warning"></i>
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers">
+                <p class="card-category">Total Members</p>
+                <p class="card-title">{{data?.AllMembers}}
+                  <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <a routerLink="/user"><i class="fa fa-refresh"></i> Today</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6" >
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-money-coins text-success" routerLink="/transactions"></i>
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers">
+                <p class="card-category">Revenue</p>
+                <p class="card-title"><i *ngIf="value > 0" class="fa-solid fa-arrow-up" style="float: left; color: rgb(20, 240, 20);"></i><i *ngIf="value < 0" class="fa-solid fa-arrow-down" style="float: left; color: rgb(240, 20, 20);"></i><i *ngIf="value === 0" class="fa-solid fa-arrows-up-down" style="float: left; color: rgb(141, 141, 141);"></i>{{data?.Today|currency:'INR'}}
+                  <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <a routerLink="/transactions"><i class="fa fa-calendar-o"></i> Today</a>
+            <span style="float: right;">Yesterday: <strong>{{data?.Yesterday|currency:'INR'}}</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6" routerLink="/products">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-vector text-danger"></i>
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers">
+                <p class="card-category">Out of Stock</p>
+                <p class="card-title">{{data?.OutOfStock}}
+                  <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <a routerLink="/products"><i class="fa fa-refresh"></i> Today</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6" routerLink="/products">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-cart-simple text-primary"></i>
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers">
+                <p class="card-category">Products</p>
+                <p class="card-title">{{data?.Products}}
+                  <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <a routerLink="/products"><i class="fa fa-refresh"></i> Today</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6" routerLink="/direct_members">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-single-02 text-danger"></i>
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers">
+                <p class="card-category">Direct Members</p>
+                <p class="card-title">{{data?.DirectMembers}}
+                  <p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+            <a routerLink="/direct_members"><i class="fa fa-calendar-o"></i> Today</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6" routerLink="/e_payments">
+      <div class="card card-stats">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-5 col-md-4">
+              <div class="icon-big text-center icon-warning">
+                <i class="nc-icon nc-money-coins text-danger"></i>
+              </div>
+            </div>
+            <div class="col-7 col-md-8">
+              <div class="numbers">
+                <p class="card-category">E-Payment Pending</p>
+                <p class="card-title">{{data?.EWallet|currency:'INR'}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer ">
+          <hr>
+          <div class="stats">
+           <a routerLink="/e_payments"> <i class="fa fa-calendar-o"></i> Total</a>
+           <!-- <span style="float: right;">Yesterday: <strong>₹0.00</strong></span> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-lg-5 col-md-6 col-sm-6" routerLink="/ordersPending"> -->
+      <!-- <div class="card card-stats"> -->
+        <!-- <div class="card-body "> -->
+          <!-- <div class="row"> -->
+            <!-- <div class="col-5 col-md-4"> -->
+              <!-- <div class="icon-big text-center icon-warning"> -->
+                <!-- <i class="nc-icon nc-money-coins text-danger"></i> -->
+              <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="col-7 col-md-8"> -->
+              <!-- <div class="numbers"> -->
+                <!-- <p class="card-category">Transaction Approval Pending</p> -->
+                <!-- <p class="card-title">0 -->
+                  <!-- <p> -->
+              <!-- </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="card-footer "> -->
+          <!-- <hr> -->
+          <!-- <div class="stats"> -->
+           <!-- <a routerLink="/ordersPending"> <i class="fa fa-calendar-o"></i> Total</a> -->
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+    <!-- <div class="col-lg-3 col-md-6 col-sm-6"> -->
+      <!-- <div class="card card-stats"> -->
+        <!-- <div class="card-body "> -->
+          <!-- <div class="row"> -->
+            <!-- <div class="col-5 col-md-4"> -->
+              <!-- <div class="icon-big text-center icon-warning"> -->
+                <!-- <i class="nc-icon nc-money-coins text-danger"></i> -->
+              <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="col-7 col-md-8"> -->
+              <!-- <div class="numbers"> -->
+                <!-- <p class="card-category">Total GST</p> -->
+                <!-- <p class="card-title">{{0.00|currency:'INR'}} -->
+                  <!-- <p> -->
+              <!-- </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="card-footer "> -->
+          <!-- <hr> -->
+          <!-- <div class="stats"> -->
+           <!-- <a routerLink="/e_payments"> <i class="fa fa-calendar-o"></i> Today</a> -->
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+  </div>

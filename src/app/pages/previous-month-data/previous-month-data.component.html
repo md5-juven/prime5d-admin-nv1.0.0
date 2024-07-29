@@ -1,0 +1,76 @@
+<h1>
+  Get Last 3 Months Data Here!
+</h1>
+<div class="card text-center">
+  <div class="monthButton">
+    <!-- <input type="month" id="dateInput" [(ngModel)]="mDate" (change)="updateDateInput()"> -->
+    <button type="button" class="btn btn-outline-success m-3" *ngFor="let b of monthListName" [id]="b.text"
+      (click)="monthUpdate(b)">{{b.text}}</button>
+      <button type="button" class="btn btn-outline-success m-3" routerLink="/e_payments">CURR STATE</button>
+      <button type="button" class="btn disabled btn-outline-secondary m-3" id="exportXLXS"  (click)="exportExcel()">EXPORT</button>
+    </div>
+  <div class="card-body">
+    <div class="table-responsive" id="excel-table">
+      <table class="table ">
+        <thead class=" text-primary">
+          <tr>
+            <th>
+              USER_ID
+            </th>
+            <th>
+              Name
+            </th>
+            <th>
+              STATUS
+            </th>
+            <th>
+              MONTH
+            </th>
+            <th>
+              EMAIL ADDRESS
+            </th>
+            <th>
+              E_WALLET
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of allUser">
+            <td>
+              {{u.referralId}}
+            </td>
+            <td>
+              {{u.username}}
+            </td>
+            <td *ngIf="u.activeStatus" style="color: green;">
+              <strong>ACTIVE</strong>
+            </td>
+            <td *ngIf="!u.activeStatus" style="color: red;">
+              <strong>IN-ACTIVE</strong>
+            </td>
+            <td>
+              {{u.status_date | date:'MMM YYY'}}
+            </td>
+            <td>
+              {{u.email}}
+            </td>
+            <td>
+              {{u.walletBalance}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- <div class="card-header">
+      Notice
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Previous Data Not Found</h5>
+      <p class="card-text">Please Wait for a Month to get the data of the Last Month</p>
+      <a routerLink="/dashboard" class="btn btn-primary">Go To Dashboard</a>
+    </div>
+    <div class="card-footer text-muted">
+     Checking, If Data Exist Today
+    </div> -->
+</div>

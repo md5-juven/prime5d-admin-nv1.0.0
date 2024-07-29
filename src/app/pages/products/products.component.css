@@ -1,0 +1,11 @@
+.stock-out{
+    background-color:rgb(255, 79, 79);
+}
+
+.red{
+    font-weight: bolder;
+    color: red;
+}
+.black{
+    color: black;
+}

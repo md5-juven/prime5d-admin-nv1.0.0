@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> All Registered Users</h4><button class="btn btn-primary" (click)="exportExcel()">SAVE</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" id="excel-table">
+            <table class="table">
+              <thead class=" text-primary">
+                <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  REFERRAL CODE
+                </th>
+                <th>
+                  Email Address
+                </th>
+                <th>
+                  Phone Number
+                </th>
+                <th>
+                  REFERRED BY
+                </th>
+                <!-- <th>
+                  Delete Users
+                </th> -->
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of allUser">
+                  <td>
+                    {{u.username}}
+                  </td>
+                  <td>
+                    {{u.referralId}}
+                  </td>
+                  <td>
+                    {{u.email}}
+                  </td>
+                  <td>
+                    {{u.phone}}
+                  </td>
+                  <td>
+                    {{u.referral_by}}
+                  </td>
+                  <!-- <td>
+                    <button class="mat-primary-button" (click)="deleteUser(u.referralId)">Delete User</button>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

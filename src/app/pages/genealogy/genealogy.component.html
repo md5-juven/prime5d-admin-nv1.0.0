@@ -1,0 +1,48 @@
+<table class="table" *ngFor="let u of allUser">
+  <thead>
+      <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Referral Code</th>
+          <th>EMAIL-ID</th>
+          <th>Phone Number</th>
+          <th>Referred By</th>
+      </tr>
+  </thead>
+  <tr >
+      <td><span class="expandChildTable" [id]="u.referralId" (click)="openTree(u.referralId)"></span></td>
+      <td>{{u.username}}</td>
+      <td>{{u.referralId}}</td>
+      <td> {{u.email}}</td>
+      <td>{{u.phone}}</td>
+      <td>{{u.referral_by}}</td>  
+  </tr>
+  <tr class="childTableRow" >
+      <td colspan="6" id="excel-table">
+          <h5>Genealogy View Of {{u.username}}</h5>
+          <div style="display: flex;">
+            <button class="btn-outline-success" style="justify-content: flex-start; border-radius: 5px; padding: 10px;" (click)="exportExcel()">Download Excel</button>
+          </div>
+          <table class="table">
+              <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Referral Code</th>
+                  <th>Role</th>
+                  <th>Referred By</th>
+                  <!-- <th>Relation</th> -->
+              </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let user of belowUsers">
+                      <td>{{user.username}}</td>
+                      <td>{{user.userId}}</td>
+                      <td>{{user.role}}</td>
+                      <td>{{user.referral_by}}</td>
+                      <!-- <td *ngIf="u.referralId === user.referral_by" [ngClass]="u.referralId === user.referral_by?'green':'red'"><strong>{{u.referralId === user.referral_by?'Direct':'In-Direct'}}</strong></td> -->
+                  </tr>
+              </tbody>
+          </table>
+      </td>
+  </tr>
+</table>

@@ -1,0 +1,44 @@
+
+@import 'prime-dashboard/variables';
+@import 'prime-dashboard/mixins';
+
+// Plugins CSS
+@import "prime-dashboard/plugins/plugin-animate-bootstrap-notify";
+@import "prime-dashboard/plugins/plugin-perfect-scrollbar";
+
+// Core CSS
+@import "prime-dashboard/buttons";
+@import "prime-dashboard/inputs";
+@import "prime-dashboard/typography";
+@import "prime-dashboard/misc";
+@import "prime-dashboard/checkboxes-radio";
+
+
+// components
+@import "prime-dashboard/navbar";
+@import "prime-dashboard/page-header";
+@import "prime-dashboard/dropdown";
+@import "prime-dashboard/alerts";
+@import "prime-dashboard/images";
+@import "prime-dashboard/nucleo-outline";
+@import "prime-dashboard/tables";
+@import "prime-dashboard/sidebar-and-main-panel";
+@import "prime-dashboard/footers";
+@import "prime-dashboard/fixed-plugin";
+
+// cards
+@import "prime-dashboard/cards";
+@import "prime-dashboard/cards/card-plain";
+@import "prime-dashboard/cards/card-chart";
+@import "prime-dashboard/cards/card-user";
+@import "prime-dashboard/cards/card-map";
+@import "prime-dashboard/cards/card-stats";
+
+// angular differences
+@import "prime-dashboard/angular/plugin-ngx-toastr";
+@import "prime-dashboard/angular/sidebar-and-main-panel";
+@import "prime-dashboard/angular/dropdown";
+@import "prime-dashboard/angular/inputs";
+@import "prime-dashboard/angular/fixed-plugin";
+
+@import "prime-dashboard/responsive";

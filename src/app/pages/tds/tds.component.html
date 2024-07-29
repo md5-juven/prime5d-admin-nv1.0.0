@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All TDS/ADMIN Charges listed </h4>
+          <div class="col-md-12" id="date">
+            <input type="date" name="" id="" [(ngModel)]="from">
+              <span>--TO--</span>
+            <input type="date" name="" id="" [(ngModel)]="to">
+            <button class="btn btn-outline-success m-2" (click)="getDate()">GO</button>
+              <button class="btn btn-outline-success" (click)="exportExcel()">Export Excel</button>
+          </div>
+          
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" id="excel-table">
+            <table class="table" >
+              <thead class=" text-primary">
+                <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                 USER ID 
+                </th>
+                <th>
+                  TOTAL AMOUNT
+                </th>
+                <th>
+                  TDS CHARGE
+                </th>
+                <th>
+                  ADMIN CHARGE
+                </th>
+                <th class="text-right">
+                  BALANCE
+                </th>
+            </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let value of tdsData">
+                  <td>
+                    {{value.semail}}
+                  </td>
+                  <td>
+                    {{value.suserid}}
+                  </td>
+                  <td>
+                    {{value.amount}}
+                  </td>
+                  <td>
+                    {{value.tds/2 | number: '1.2-2'}}
+                  </td>
+                  <td>
+                    {{value.tds/2 | number: '1.2-2'}}
+                  </td>
+                  <td>
+                    {{value.amount-value.tds}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,172 @@
+<!-- <div> -->
+    <!-- <h1>ORDERS </h1> -->
+    <div class="col-md-12" id="date">
+      <input type="date" name="" id="" name="from" [(ngModel)]="from">
+        <span>--TO--</span>
+      <input type="date" name="" id="" name="to" [(ngModel)]="to">
+      <button class="btn btn-outline-success m-3" (click)="getOrderList()">GO</button>
+      <button class="btn btn-success p-3" [disabled]="orderList.length==0" (click)="exportExcel()">Export Excel</button>
+        <!-- <button [disabled]="orderList.length==0" [ngClass]="orderList.length==0?'save-empty':'save'" (click)="exportExcel()">Export Excel</button> -->
+    </div>
+<!--        -->
+      <!-- <div class="mat-elevation-z8"> -->
+        <!-- <table mat-table [dataSource]="dataSource" matSort> -->
+      
+          <!-- ID Column -->
+          <!-- <ng-container matColumnDef="order_id"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> OrderID </th> -->
+            <!-- <td mat-cell *matCellDef="let row"> {{row.order_id}} </td> -->
+          <!-- </ng-container> -->
+          <!-- <ng-container matColumnDef="Date"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th> -->
+            <!-- <td mat-cell *matCellDef="let row"> {{row.date | date:'mediumDate'}} </td> -->
+          <!-- </ng-container> -->
+      
+          <!-- Progress Column -->
+          <!-- <ng-container matColumnDef="paymentId"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> PaymentID </th> -->
+            <!-- <td mat-cell *matCellDef="let row"> {{row.paymentId}} </td> -->
+          <!-- </ng-container> -->
+      
+          <!-- Name Column -->
+          <!-- <ng-container matColumnDef="noOfItems"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Items </th> -->
+            <!-- <td mat-cell *matCellDef="let row"> {{row.noOfItems}} </td> -->
+          <!-- </ng-container> -->
+      
+          <!-- Fruit Column -->
+          <!-- <ng-container matColumnDef="total_amount"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> AmountPaid </th> -->
+            <!-- <td mat-cell *matCellDef="let row"> {{row.total_amount}} </td> -->
+          <!-- </ng-container> -->
+          <!-- <ng-container matColumnDef="status"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th> -->
+            <!-- <mat-header-cell *matHeaderCellDef>STATUS</mat-header-cell> -->
+            <!-- <td mat-cell *matCellDef="let row"> -->
+               <!-- <mat-select [value]="row.status"> -->
+                <!-- <mat-option *ngFor="let s of status" [value]="s"> -->
+                  <!-- {{s}} -->
+                <!-- </mat-option> -->
+              <!-- </mat-select> -->
+              <!-- </td> -->
+          <!-- </ng-container> -->
+    
+          <!-- <ng-container matColumnDef="view"> -->
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> View </th> -->
+            <!-- <td mat-cell *matCellDef="let row"><a routerLink="/order_view/{{row.order_id}}"><i class="fa-solid fa-eye"></i></a></td> -->
+          <!-- </ng-container> -->
+      
+          <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+          <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+      
+          <!-- Row shown when there is no matching data. -->
+          <!-- <tr class="mat-row" *matNoDataRow> -->
+            <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td> -->
+          <!-- </tr> -->
+        <!-- </table> -->
+      
+        <!-- <mat-paginator [pageSizeOptions]="[10, 25, 50,100]" aria-label="Select page of users"></mat-paginator> -->
+      <!-- </div> -->
+    <!-- </div> -->
+<!--  -->
+    <!-- <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu> -->
+
+    <div class="card">
+      <div class="table-responsive" id="excel-table">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NAME</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order-ID</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">DATE</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment ID</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Items</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AmountPaid</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" id="exclude-from-excel">Track</th>
+              
+              <th class="text-secondary opacity-7" >View</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orderList">
+              <td>
+                <p class="text-xs font-weight-bold mb-0">{{order.user_name}}</p>
+              </td>
+              <td>
+                <div class="d-flex px-2 py-1">
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-xs">{{order.order_id}}</h6>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="text-xs font-weight-bold mb-0">{{order.date | date:'mediumDate'}}</p>
+              </td>
+              <td class="align-middle text-center text-xs">
+                <span class="badge badge-sm badge-success">{{order.paymentId}}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-normal">{{order.noOfItems}}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-normal">{{order.total_amount}}</span>
+              </td>
+              <td class="align-middle text-center">
+                <!-- <mat-select [value]="status"> -->
+                  <!-- <mat-option *ngFor="let s of status" [value]="s">  -->
+                 <!-- {{s}} -->
+                  <!-- </mat-option> -->
+                <!-- </mat-select>  -->
+                <!-- <span class="text-secondary text-xs font-weight-normal">{{order.total_amount}}</span> -->
+                <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="order.status"  (ngModelChange)="changes(order.order_id)"> -->
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="order.status" [attr.data-toggle]="'modal'" [attr.data-target]="selected?'#exampleModal'+order.order_id:null" (click)="currentState(order.order_id,order.status!)" (ngModelChange)="changes(order.order_id,$event)">
+                  <option *ngFor="let s of status" [selected]="s==order.status">{{s}}</option>
+                </select>
+              </td>
+              <td>
+                <button type="button" class="btn btn-success" [attr.data-toggle]="'modal'" [attr.data-target]="'#exampleModal'+order.order_id" (click)="viewShipInfo(order.order_id)"> Add/Update</button>
+                <div class="modal fade" id="exampleModal{{order.order_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" (click)="changeSelect()">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tracking Details</h1>
+                        <button type="button" class="btn-close" [attr.data-dismiss]="'modal'" aria-label="Close" (click)="changeSelect()"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="shipment-id" class="col-form-label"><strong>Shipment ID:</strong></label>
+                            <!-- <input type="text" class="form-control" name="shipmentId" [(ngModel)]="shipmentInfo.shipmentId" id="shipmentId"> -->
+                            <input type="text" class="form-control" name="shipmentId" [(ngModel)]="order.shipmentId" id="shipmentId">
+                            <label for="shipment-name" class="col-form-label"><strong>Shipment Name:</strong></label>
+                            <!-- <input type="text" class="form-control" name="shipmentProvider" [(ngModel)]="shipmentInfo.shipmentProvider" id="shipmentProvider"> -->
+                            <input type="text" class="form-control" name="shipmentProvider" [(ngModel)]="order.shipmentProvider" id="shipmentProvider">
+                          </div>
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label"><strong>Message:</strong></label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" [attr.data-dismiss]="'modal'" (click)="changeSelect()">Close</button>
+                        <button type="button" class="btn btn-success" [attr.data-dismiss]="'modal'" style="width: fit-content; margin-left: 20px;" (click)="ship(order.order_id)">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="align-middle text-center">
+                <a routerLink="/order_view/{{order.order_id}}" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                  <i class="fa-solid fa-eye"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>

@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">GST REPORTS </h4>
+          <div class="col-md-12" id="date">
+            <input type="date" name="" id="" [(ngModel)]="from">
+              <span>--TO--</span>
+            <input type="date" name="" id="" [(ngModel)]="to">
+            <button class="btn btn-outline-success m-3" (click)="getPayments()">GO</button>
+            <button class="btn btn-success p-3" [disabled]="allTrans.length==0" (click)="exportExcel()">Export Excel</button>
+              <!-- <button [disabled]="allTrans.length==0" [ngClass]="allTrans.length==0?'save-empty':'save'" (click)="exportExcel()">Export Excel</button> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" id="excel-table">
+            <table class="table" >
+              <thead class=" text-primary">
+                <tr>
+                <th>
+                  EMAIL
+                </th>
+                <th>
+                  GST
+                </th>
+                <!-- <th class="text-right"> -->
+                  <!-- DATE -->
+                <!-- </th> -->
+                <!-- <th class="text-right"> -->
+                  <!-- TIME -->
+                <!-- </th> -->
+                <th class="text-right">
+                  AMOUNT
+                </th>
+            </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of allTrans">
+                  <td>
+                    {{t.email}}
+                  </td>
+                  <td>
+                   <span class="badge badge-xxl badge-success"> {{t.gst}}</span>
+                  </td>
+                  <!-- <td class="text-right"> -->
+                    <!-- {{t.createDate | date:'mediumDate'}} -->
+                  <!-- </td> -->
+                  <!-- <td class="text-right"> -->
+                    <!-- {{t.createDate | date:'shortTime'}} -->
+                  <!-- </td> -->
+                  <td class="text-right">
+                    {{t.amount|currency:'INR'}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

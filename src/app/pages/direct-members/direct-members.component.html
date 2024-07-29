@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Direct Members to the Company</h4><button class="btn btn-primary" (click)="exportExcel()">SAVE</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" id="excel-table">
+            <table class="table" >
+              <thead class=" text-primary">
+                <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Phone Number
+                </th>
+                <th>
+                  Email Address
+                </th>
+                <th>
+                  REFERAL CODE
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of allUser">
+                  <td>
+                    {{u.username}}
+                  </td>
+                  <td>
+                    {{u.phone}}
+                  </td>
+                  <td>
+                    {{u.email}}
+                  </td>
+                  <td>
+                    {{u.referralId}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

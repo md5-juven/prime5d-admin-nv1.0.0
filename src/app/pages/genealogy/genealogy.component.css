@@ -1,0 +1,29 @@
+
+
+tr{
+  background: white;
+}
+.expandChildTable:before {
+  content: "+";
+  font-size: 20px;
+  font-weight: 500;
+  margin: 5px;
+  display: block;
+  cursor: pointer;
+}
+.expandChildTable.selected::before {
+  content: "-";
+}
+.childTableRow {
+  display: none;
+}
+.childTableRow table {
+  border: 2px solid #555;
+}
+
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}

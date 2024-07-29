@@ -1,0 +1,142 @@
+<div class="spinner" [hidden]="!loader">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="container-fluid" [hidden]="loader">
+    <h4>ORDER PLACED DETAILS</h4>
+    <!-- <section class="example-container mat-elevation-z8" tabindex="0"> -->
+    <!-- <table mat-table [dataSource]="productData"> -->
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="position"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>No.</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.position}}</td> -->
+    <!-- </ng-container> -->
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="name" sticky> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Name</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.name}}</td> -->
+
+    <!-- </ng-container> -->
+
+    <!-- Weight Column -->
+    <!-- <ng-container matColumnDef="mrp"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>MRP</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.mrp}}</td> -->
+    <!-- </ng-container> -->
+
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="quantity"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Quantity</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.quantity}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container matColumnDef="total_mrp"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Amount</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.total_mrp}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container matColumnDef="dic_value"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Dis.</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.dic_value}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container matColumnDef="gst"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>GST(%)</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.gst}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container matColumnDef="tax_value"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Tax Value</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.tax_value}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container matColumnDef="gross_value"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Gross Amt</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.gross_value}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <ng-container matColumnDef="disc_price"> -->
+    <!-- <th mat-header-cell *matHeaderCellDef>Net Amount</th> -->
+    <!-- <td mat-cell *matCellDef="let element">{{element.disc_price}}</td> -->
+    <!-- </ng-container> -->
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr> -->
+    <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+
+    <!-- </table> -->
+    <!-- </section> -->
+    <div class="card">
+        <div class="table-responsive" id="excel-table">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">MRP</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            Quantity</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            Amount</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            Dis.Value</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">GST
+                            (%)</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tax
+                            Value</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            Gross Amt</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Net
+                            Amt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderDetails.productList">
+                        <td>
+                            <div class="d-flex px-2 py-1">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-xs">{{order.name}}</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">{{order.mrp}}</p>
+                        </td>
+                        <td class="align-middle text-center text-xs">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.quantity}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.total_mrp}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.dic_value}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.gst}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.tax_value}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.gross_value}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-normal">{{order.disc_price}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div [hidden]="loader">
+    <table class="table-resp">
+        <tbody>
+            <tr>
+                <td class="head">MRP Total: </td>
+                <td>{{total_mrp | currency:'INR':'symbol':'.0-2'}}</td>
+            </tr>
+            <tr>
+                <td class="head">Discounted Price: </td>
+                <td>{{discount | currency:'INR':'symbol':'.0-2'}}</td>
+            </tr>
+            <tr>
+                <td class="head">Amount Paid: </td>
+                <td>{{total_paid | currency:'INR':'symbol':'.0-2'}}</td>
+            </tr>
+            
+    </table>
+    <button class="btn btn-success" (click)="printInvoice()">Download Invoice</button>
+
+</div>

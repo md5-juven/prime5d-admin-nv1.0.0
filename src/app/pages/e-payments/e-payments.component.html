@@ -1,0 +1,159 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">E-WALLET Balance to Customers</h4>
+        <button class="save" (click)="exportExcel()">Export Excel</button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive" id="excel-table">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Phone Number</th>
+                <th>Email Address</th>
+                <th>Bank Details</th>
+                <th class="text-right">
+                  E_WALLET<span (click)="sortEwallet()" matTooltip="Sort Alphabetically"><i [ngClass]="
+                        walletSort
+                          ? 'fa-solid fa-arrow-up-a-z'
+                          : 'fa-solid fa-arrow-down-a-z'
+                      "></i></span>
+                </th>
+                <th>Edit Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let u of allUser">
+                <td>
+                  {{ u.username}}
+                </td>
+                <td *ngIf="u.activeStatus" style="color: green;">
+                  <strong>ACTIVE</strong>
+                </td>
+                <td *ngIf="!u.activeStatus" style="color: red;">
+                  <strong>IN-ACTIVE</strong>
+                </td>
+                <td>
+                  {{ u.phone }}
+                </td>
+                <td>
+                  {{ u.email }}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"
+                    (click)="getBankDetails(u.email)">
+                    GET
+                  </button>
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">
+                            Bank Details
+                          </h5>
+                          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                          <!-- <span aria-hidden="true">&times;</span> -->
+                          <!-- </button> -->
+                        </div>
+                        <div class="modal-body" *ngIf="!bankDetails">
+                          <h4><strong>No Bank Info</strong></h4>
+                        </div>
+                        <div class="modal-body" *ngIf="bankDetails">
+                          <p>
+                            Name (As Per Bank) :
+                            <strong>{{ bankDetails.user_name }}</strong>
+                          </p>
+                          <p>
+                            Bank name &nbsp;&nbsp;&nbsp;:
+                            <strong>{{ bankDetails.bank_name }}</strong>
+                          </p>
+                          <p>
+                            Account Number:
+                            <strong>{{ bankDetails.account_number }}</strong>
+                          </p>
+                          <p>
+                            IFSC Code:
+                            <strong>{{ bankDetails.ifsc_code }}</strong>
+                          </p>
+                          <p>
+                            Branch Name:
+                            <strong>{{ bankDetails.branch_name }}</strong>
+                          </p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {{ u.walletBalance }}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger" [attr.data-toggle]="'modal'"
+                    [attr.data-target]="'#exampleModal'+u.email" [disabled]="u.walletBalance <= 0">
+                    PAY ₹{{u.walletBalance}}
+                  </button>
+                  <div class="modal fade" id="exampleModal{{u.email}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            Transaction Details
+                          </h1>
+                          <button type="button" class="btn-close" [attr.data-dismiss]="'modal'"
+                            aria-label="Close"></button>
+                        </div>
+
+                        <form #userlogin="ngForm">
+                          <div class="modal-body">
+                            <div class="mb-3">
+                              <label for="email" class="col-form-label"><strong>Email</strong></label>
+                              <input type="text" name="email" id="email" [(ngModel)]="u.email" class="form-control"
+                                id="payment-id" readonly />
+
+                              <label for="amount" class="col-form-label"><strong>Avalable Amount</strong></label>
+                              <input type="text" class="form-control" name="amount" [(ngModel)]="u.walletBalance"
+                                id="amount" readonly />
+
+                              <label for="bill_id" class="col-form-label"><strong>Payment ID:</strong></label>
+                              <input type="text" class="form-control" name="bill_id" id="bill_id"
+                                [(ngModel)]="bill_id" />
+
+                              <label for="date" class="col-form-label"><strong>Transaction Date: </strong></label>
+                              <input type="date" class="form-control" id="date" name="createDate"
+                                [(ngModel)]="createDate" readonly />
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" #closeButtionModel class="btn btn-danger"
+                              [attr.data-dismiss]="'modal'">
+                              Close
+                            </button>
+                            <button type="submit" value="submit" class="btn btn-success"
+                              style="width: fit-content; margin-left: 20px" [attr.data-dismiss]="'modal'"
+                              [disabled]="!userlogin.form.valid" (click)="onClickSubmit(userlogin.value)">
+                              Save changes
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

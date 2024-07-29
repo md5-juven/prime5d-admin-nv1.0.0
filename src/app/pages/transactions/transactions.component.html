@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All Transactions </h4>
+          <div class="col-md-12" id="date">
+            <input type="date" name="" id="" [(ngModel)]="from">
+              <span>--TO--</span>
+            <input type="date" name="" id="" [(ngModel)]="to">
+            <button class="btn btn-outline-success m-3" (click)="getTrans()">GO</button>
+            <button class="btn btn-success p-3" [disabled]="allTrans.length==0" (click)="exportExcel()">Export Excel</button>
+              <!-- <button [disabled]="allTrans.length==0" [ngClass]="allTrans.length==0?'save-empty':'save'" (click)="exportExcel()">Export Excel</button> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive" id="excel-table">
+            <table class="table" >
+              <thead class=" text-primary">
+                <tr>
+                <th>
+                  EMAIL
+                </th>
+                <th>
+                  BILL_ID
+                </th>
+                <th>
+                  PAYMENT_ID
+                </th>
+                <th class="text-right">
+                  DATE
+                </th>
+                <th class="text-right">
+                  TIME
+                </th>
+                <th class="text-right">
+                  AMOUNT
+                </th>
+            </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of allTrans">
+                  <!-- <td (click)="fetchName(t.email)"> -->
+                    <!-- {{username}} -->
+                  <!-- </td> -->
+                  <td>
+                    {{t.email}}
+                  </td>
+                  <td>
+                    {{t.bill_id}}
+                  </td>
+                  <td>
+                   <span class="badge badge-sm badge-success"> {{t.paymentId}}</span>
+                  </td>
+                  <td class="text-right">
+                    {{t.date | date:'mediumDate'}}
+                  </td>
+                  <td class="text-right">
+                    {{t.date | date:'shortTime'}}
+                  </td>
+                  <td class="text-right">
+                    {{t.amount}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
